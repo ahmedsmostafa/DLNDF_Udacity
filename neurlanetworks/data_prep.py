@@ -4,7 +4,7 @@ import pandas as pd
 import os
 cwd = os.getcwd()
 
-admissions = pd.read_csv("02-neurlanetworks/binary.csv")
+admissions = pd.read_csv("neurlanetworks/binary.csv")
 
 # Make dummy variables for rank
 data = pd.concat([admissions, pd.get_dummies(admissions['rank'], prefix='rank')], axis=1)
