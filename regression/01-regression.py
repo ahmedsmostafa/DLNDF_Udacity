@@ -7,7 +7,7 @@ cwd
 
 # Assign the dataframe to this variable.
 # Load the data
-bmi_life_data = pd.read_csv("01-regression/bmi_and_life_expectancy.csv")
+bmi_life_data = pd.read_csv("regression/bmi_and_life_expectancy.csv")
 output = bmi_life_data[['Life expectancy']]
 input = bmi_life_data[['BMI']]
 
