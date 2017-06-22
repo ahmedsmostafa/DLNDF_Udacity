@@ -7,7 +7,7 @@ class NeuralNetwork():
         self.synaptic_weights = 2 * np.random.random((3,1))-1
 
     def __sigmoid(self, x):
-        return 1/(1 + np.exp(-x))
+        return 1/(1./ + np.exp(-x))
 
     def __sigmoid_derivative(self, x):
         return x * (1-x)
