@@ -12222,7 +12222,7 @@ Default GPU Device: /gpu:0
     <span class="n">embeddings</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">embed_sequence</span><span class="p">(</span><span class="n">rnn_inputs</span><span class="p">,</span> <span class="n">source_vocab_size</span><span class="p">,</span> <span class="n">encoding_embedding_size</span><span class="p">)</span>
     
     <span class="n">encoding_cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">MultiRNNCell</span><span class="p">([</span><span class="n">create_lstm_cell</span><span class="p">(</span><span class="n">rnn_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="p">)])</span>
-    <span class="n">dropout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">DropoutWrapper</span><span class="p">(</span><span class="n">encoding_cell</span><span class="p">,</span> <span class="n">keep_prob</span><span class="p">)</span>
+    <span class="n">dropout</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">rnn</span><span class="o">.</span><span class="n">DropoutWrapper</span><span class="p">(</span><span class="n">encoding_cell</span><span class="p">,</span> <span class="n">output_keep_prob</span> <span class="o">=</span> <span class="n">keep_prob</span><span class="p">)</span>
     <span class="n">encoding_output</span><span class="p">,</span> <span class="n">encoding_state</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dynamic_rnn</span><span class="p">(</span><span class="n">cell</span><span class="o">=</span><span class="n">dropout</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">encoding_output</span><span class="p">,</span> <span class="n">encoding_state</span>
 
@@ -12611,12 +12611,12 @@ Default GPU Device: /gpu:0
 <span class="c1"># Batch Size</span>
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">512</span>
 <span class="c1"># RNN Size</span>
-<span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">rnn_size</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="c1"># Number of Layers</span>
 <span class="n">num_layers</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="c1"># Embedding Size</span>
-<span class="n">encoding_embedding_size</span> <span class="o">=</span> <span class="mi">150</span>
-<span class="n">decoding_embedding_size</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">encoding_embedding_size</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">decoding_embedding_size</span> <span class="o">=</span> <span class="mi">256</span>
 <span class="c1"># Learning Rate</span>
 <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="c1"># Dropout Keep Probability</span>
@@ -12860,16 +12860,16 @@ Default GPU Device: /gpu:0
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Epoch   0 Batch  100/269 - Train Accuracy: 0.4951, Validation Accuracy: 0.5063, Loss: 1.4600
-Epoch   0 Batch  200/269 - Train Accuracy: 0.5314, Validation Accuracy: 0.5560, Loss: 0.7523
-Epoch   1 Batch  100/269 - Train Accuracy: 0.6919, Validation Accuracy: 0.6789, Loss: 0.4522
-Epoch   1 Batch  200/269 - Train Accuracy: 0.7557, Validation Accuracy: 0.7507, Loss: 0.3343
-Epoch   2 Batch  100/269 - Train Accuracy: 0.8732, Validation Accuracy: 0.8622, Loss: 0.1514
-Epoch   2 Batch  200/269 - Train Accuracy: 0.9035, Validation Accuracy: 0.8959, Loss: 0.1046
-Epoch   3 Batch  100/269 - Train Accuracy: 0.9291, Validation Accuracy: 0.9117, Loss: 0.0686
-Epoch   3 Batch  200/269 - Train Accuracy: 0.9351, Validation Accuracy: 0.9331, Loss: 0.0528
-Epoch   4 Batch  100/269 - Train Accuracy: 0.9543, Validation Accuracy: 0.9423, Loss: 0.0481
-Epoch   4 Batch  200/269 - Train Accuracy: 0.9578, Validation Accuracy: 0.9538, Loss: 0.0368
+<pre>Epoch   0 Batch  100/269 - Train Accuracy: 0.6045, Validation Accuracy: 0.5912, Loss: 0.7472
+Epoch   0 Batch  200/269 - Train Accuracy: 0.7353, Validation Accuracy: 0.7171, Loss: 0.3594
+Epoch   1 Batch  100/269 - Train Accuracy: 0.9319, Validation Accuracy: 0.9114, Loss: 0.0744
+Epoch   1 Batch  200/269 - Train Accuracy: 0.9520, Validation Accuracy: 0.9319, Loss: 0.0446
+Epoch   2 Batch  100/269 - Train Accuracy: 0.9656, Validation Accuracy: 0.9510, Loss: 0.0318
+Epoch   2 Batch  200/269 - Train Accuracy: 0.9783, Validation Accuracy: 0.9633, Loss: 0.0222
+Epoch   3 Batch  100/269 - Train Accuracy: 0.9734, Validation Accuracy: 0.9628, Loss: 0.0212
+Epoch   3 Batch  200/269 - Train Accuracy: 0.9812, Validation Accuracy: 0.9634, Loss: 0.0158
+Epoch   4 Batch  100/269 - Train Accuracy: 0.9780, Validation Accuracy: 0.9730, Loss: 0.0169
+Epoch   4 Batch  200/269 - Train Accuracy: 0.9833, Validation Accuracy: 0.9713, Loss: 0.0119
 Model Trained and Saved
 </pre>
 </div>
@@ -13058,12 +13058,12 @@ Model Trained and Saved
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>INFO:tensorflow:Restoring parameters from checkpoints/dev
 Input
-  Word Ids:      [4, 100, 168, 225, 159, 25, 46]
+  Word Ids:      [67, 135, 113, 210, 171, 80, 169]
   English Words: [&#39;he&#39;, &#39;saw&#39;, &#39;a&#39;, &#39;old&#39;, &#39;yellow&#39;, &#39;truck&#39;, &#39;.&#39;]
 
 Prediction
-  Word Ids:      [130, 148, 225, 51, 317, 39, 285, 1]
-  French Words: il a vu une voiture blanche . &lt;EOS&gt;
+  Word Ids:      [113, 47, 170, 12, 313, 223, 133, 251, 1]
+  French Words: il a vu un vieux camion noir . &lt;EOS&gt;
 </pre>
 </div>
 </div>
